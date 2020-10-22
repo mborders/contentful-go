@@ -1,3 +1,109 @@
+v0.5.0 (unreleased)
+===
+(TODO: changes clean-up)
+
+* Added uploadFrom property to the asset resource.
+* Made Locale field of assets exportable.
+* Added archive properties to the Sys struct
+* Made locale field in Entry model exportable
+* Added missing X-Contentful-Content-Type header.
+* updated gomod
+* Added extra unit test.
+* Added support for deleting resources.
+* Added support for creating/uploading resources.
+* Added support for getting an uploaded resource.
+* [Syntax], [CP-182] Renamed some files, added unit tests to the Get method of ContentTypes service.
+* [Syntax] Fixed some warnings and syntax notifications.
+* [CP-182] Added a second unit test for get methods.
+* [CP-182] Coverage improvements.
+* [CP-182] Coverage improvements.
+* [CP-182] Added missing unit tests to the Access Token and User services.
+* [CP-182] Added missing unit tests to the Access Token and User services.
+* [CP-182] Global coverage improvements.
+* [CP-182] Coverage improvements for the collection service.
+* [CP-182] Coverage improvements for the webhook service.
+* [CP-182] Added more unit tests, and improved coverage.
+* [CP-182] Added unit tests for the upsert method of the asset service.
+* [CP-182] Added unit tests for the upsert method of the asset service.
+* [[Syntax] Syntax improvements
+* [[Syntax] Renamed wrong comments in app definition service.
+* [CP-182] Adding missing asserts in the APIKey service.
+* [CP-182] Adding missing unit tests of the upsert method in APIKeys service.
+* [CP-77] Added support for getting usage statistics from an organization by spaces.
+* [CP-76] Added support for getting usage statistics from an organization.
+* [CP-75] Added support for deleting app installations.
+* [CP-73] Added support for creating and updating app installations.
+* [CP-72], [CP-74] Added support for listing and getting app installations from the Content Management API.
+* [CP-71] Added support for deleting app definitions.
+* Create method unit test asserts added.
+* [CP-68], [CP-70] Added support for creating and updating app definitions.
+* [CP-69] Added support for getting individual app definitions.
+* [CP-67] Added support for listing app definitions.
+* [CP-39], [CP-40] Added support for getting call details and health.
+* [CP-38] Added support for listing an overview of all recent calls to a webhook.
+* [CP-26] Added support for deleting extensions.
+* [CP-23], [CP-24] Added support for creating and updating extensions.
+* [CP-22] Added support for getting single extensions.
+* [CP-22] Added support for listing all extensions.
+* [CP-21] Added support for updating editor interfaces.
+* [CP-20] Added support for getting single editor interfaces.
+* [CP-19] Added support for listing editor interfaces.
+* [CP-65], [CP-66] Added support for creating and deleting scheduled actions of entries.
+* [CP-64] Added support for getting all scheduled actions from CMA.
+* [CP-60], [CP-62], [CP-63] Added support for creating, updating and deleting entry tasks.
+* [CP-61] Added support for getting a single entry task from the CMA.
+* [CP-59] Added support for listing entry tasks.
+* [Syntax] Cleared most warnings inside the codebase.
+* [CP-57] Added support for revoking access tokens.
+* [CP-53], [CP-54] Added missing unit tests.
+* [CP-57] Added support for creating access tokens.
+* [CP-55], [CP-56] Added support for getting and listing access tokens.
+* [CP-46], [CP-47], [CP-48], [CP-49] Added support for getting and listing snapshots.
+* [CP-36], [CP-37] Added support for archiving and unarchiving assets.
+* [CP-34], [CP-35] Added support for listing only published assets and unpublishing assets. Also wrote all unit tests for the assets service.
+* [CP-52] Added support for deleting space memberships.
+* [CP-51] Added support for creating and updating memberships.
+* [CP-50] Added support for getting a single space membership.
+* [CP-45] Added support for listing space memberships.
+* [CP-45] Added support for deleting a role of a space.
+* [CP-44] Added support for updating a role of a space.
+* [CP-42] Added support for creating a new role of a space.
+* [CP-43] Added support for getting a single role of a space.
+* [CP-41] Added support for listing all roles of one space.
+* [CP-29], [CP-30] Added support for archiving and unarchiving entries.
+* [CP-18], [CP-27], [CP-28] Added support for creating and updating entries in a space, also included is the functionality to get only all activated content types.
+* [CP-17] Added getting all organizations of authenticated user.
+* [CP-10] Added support for updating environment aliases.
+* [CP-8], [CP-9] Added support for listing and getting environment aliases.
+* [CP-7] Delete functionality of environments.
+* [CP-4], [CP-6] Upsert functionality of environments.
+* [CP-6] Get one single environment of space.
+* [CP-1] Get all environments of space.
+* [CP-58] Get the authenticated user.
+* Update moul/http2curl dependency (#44)
+* Update Gopkg.lock
+* Remove old http2curl module from go.sum
+* Switch from github.com/moul/http2curl to moul.io/http2curl
+* added environment + improved memory alloc (#39)
+* removed checking for environment
+* added environment + improved memory alloc
+
+
+v0.4.0 (2019-04-29)
+===
+* `+` Added support for creating/uploading resources.
+* `+` Adding test for contentful.SetClient
+* `~` Allowing the HTTP client to be set by the consumer. Useful for testing or implementing more robust HTTP clients.
+* `+` Add Go Modules
+* `+` added field type Symbol
+* `+` Created an asset Alias for custom UnmarshalJSON method and fixed typo
+* `+` Add MIT License
+* `~` Capture validation errors
+* `+` New content types can specify their ID.
+* `~` Rename methods Activate/Deactivate to Publish/Unpublish
+* `+` Extend EntryService by Delete, Publish and Unpublish actions
+
+
 v0.3.1 (2017-11-28)
 ===
 * `~` sdk version header format fixed.
