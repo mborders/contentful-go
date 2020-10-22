@@ -1,4 +1,4 @@
 package contentful
 
 // Version for SDK Version
-var Version = "0.4.0"
+var Version = "0.6.1"
