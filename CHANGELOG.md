@@ -12,7 +12,7 @@ v0.6.0 (2020-04-03)
 * `~` More asserts in unit tests, test more specific per entity
 
 
-v0.5.12 (2020-03-31)
+v0.5.5 (2020-03-31)
 ===
 * `+` Added support for app-definitions entity
 * `~` Tests for app-definitions entity
@@ -23,38 +23,26 @@ v0.5.12 (2020-03-31)
 * `~` Created unit tests for all Create methods (all entities)
 
 
-v0.5.11 (2020-03-30)
+v0.5.4 (2020-03-30)
 ===
 * `+` Added support for webhook entity
 * `+` Webhook calls and webhook health support
 * `~` Tests for webhook entity
 
 
-v0.5.10 (2020-03-30)
+v0.5.3 (2020-03-30)
 ===
 * `+` Added support for extensions entity
 * `~` Tests for extensions entity
-
-
-v0.5.9 (2020-03-27)
-===
 * `+` Added support for editor interfaces entity
 * `~` Tests for editor interfaces entity
-
-
-v0.5.8 (2020-03-27)
-===
 * `+` Added support for scheduledactions entity
 * `~` Tests for scheduledactions entity
-
-
-v0.5.7 (2020-03-27)
-===
 * `+` Added support for entrytasks entity
 * `~` Tests for entrytasks entity
 
 
-v0.5.6 (2020-03-26)
+v0.5.2 (2020-03-26)
 ===
 * `+` Added support for accesstokens entity
 * `~` Tests for accesstokens entity
@@ -62,32 +50,16 @@ v0.5.6 (2020-03-26)
 * `~` Code cleanup
 
 
-v0.5.5 (2020-03-25)
+v0.5.1 (2020-03-25)
 ===
 * `+` Added support for snapshots entity
 * `~` Tests for snapshots entity
-
-
-v0.5.4 (2020-03-24)
-===
 * `+` Added support for assets entity
 * `~` Tests for assets entity
-
-
-v0.5.3 (2020-03-23)
-===
 * `+` Added support for memberships entity
 * `~` Tests for memberships entity
-
-
-v0.5.2 (2020-03-20)
-===
 * `+` Added support for roles entity
 * `~` Tests for roles entity
-
-
-v0.5.1 (2020-03-19)
-===
 * `+` Added support for entries entity
 * `~` Tests for entries entity
 
