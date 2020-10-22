@@ -1,92 +1,105 @@
-v0.5.0 (unreleased)
+v0.6.1 (2020-5-13)
 ===
-(TODO: changes clean-up)
+* `+` Added support for uploads entity
+* `~` Added unit tests for uploads entity
 
-* Added uploadFrom property to the asset resource.
-* Made Locale field of assets exportable.
-* Added archive properties to the Sys struct
-* Made locale field in Entry model exportable
-* Added missing X-Contentful-Content-Type header.
-* updated gomod
-* Added extra unit test.
-* Added support for deleting resources.
-* Added support for creating/uploading resources.
-* Added support for getting an uploaded resource.
-* [Syntax], [CP-182] Renamed some files, added unit tests to the Get method of ContentTypes service.
-* [Syntax] Fixed some warnings and syntax notifications.
-* [CP-182] Added a second unit test for get methods.
-* [CP-182] Coverage improvements.
-* [CP-182] Coverage improvements.
-* [CP-182] Added missing unit tests to the Access Token and User services.
-* [CP-182] Added missing unit tests to the Access Token and User services.
-* [CP-182] Global coverage improvements.
-* [CP-182] Coverage improvements for the collection service.
-* [CP-182] Coverage improvements for the webhook service.
-* [CP-182] Added more unit tests, and improved coverage.
-* [CP-182] Added unit tests for the upsert method of the asset service.
-* [CP-182] Added unit tests for the upsert method of the asset service.
-* [[Syntax] Syntax improvements
-* [[Syntax] Renamed wrong comments in app definition service.
-* [CP-182] Adding missing asserts in the APIKey service.
-* [CP-182] Adding missing unit tests of the upsert method in APIKeys service.
-* [CP-77] Added support for getting usage statistics from an organization by spaces.
-* [CP-76] Added support for getting usage statistics from an organization.
-* [CP-75] Added support for deleting app installations.
-* [CP-73] Added support for creating and updating app installations.
-* [CP-72], [CP-74] Added support for listing and getting app installations from the Content Management API.
-* [CP-71] Added support for deleting app definitions.
-* Create method unit test asserts added.
-* [CP-68], [CP-70] Added support for creating and updating app definitions.
-* [CP-69] Added support for getting individual app definitions.
-* [CP-67] Added support for listing app definitions.
-* [CP-39], [CP-40] Added support for getting call details and health.
-* [CP-38] Added support for listing an overview of all recent calls to a webhook.
-* [CP-26] Added support for deleting extensions.
-* [CP-23], [CP-24] Added support for creating and updating extensions.
-* [CP-22] Added support for getting single extensions.
-* [CP-22] Added support for listing all extensions.
-* [CP-21] Added support for updating editor interfaces.
-* [CP-20] Added support for getting single editor interfaces.
-* [CP-19] Added support for listing editor interfaces.
-* [CP-65], [CP-66] Added support for creating and deleting scheduled actions of entries.
-* [CP-64] Added support for getting all scheduled actions from CMA.
-* [CP-60], [CP-62], [CP-63] Added support for creating, updating and deleting entry tasks.
-* [CP-61] Added support for getting a single entry task from the CMA.
-* [CP-59] Added support for listing entry tasks.
-* [Syntax] Cleared most warnings inside the codebase.
-* [CP-57] Added support for revoking access tokens.
-* [CP-53], [CP-54] Added missing unit tests.
-* [CP-57] Added support for creating access tokens.
-* [CP-55], [CP-56] Added support for getting and listing access tokens.
-* [CP-46], [CP-47], [CP-48], [CP-49] Added support for getting and listing snapshots.
-* [CP-36], [CP-37] Added support for archiving and unarchiving assets.
-* [CP-34], [CP-35] Added support for listing only published assets and unpublishing assets. Also wrote all unit tests for the assets service.
-* [CP-52] Added support for deleting space memberships.
-* [CP-51] Added support for creating and updating memberships.
-* [CP-50] Added support for getting a single space membership.
-* [CP-45] Added support for listing space memberships.
-* [CP-45] Added support for deleting a role of a space.
-* [CP-44] Added support for updating a role of a space.
-* [CP-42] Added support for creating a new role of a space.
-* [CP-43] Added support for getting a single role of a space.
-* [CP-41] Added support for listing all roles of one space.
-* [CP-29], [CP-30] Added support for archiving and unarchiving entries.
-* [CP-18], [CP-27], [CP-28] Added support for creating and updating entries in a space, also included is the functionality to get only all activated content types.
-* [CP-17] Added getting all organizations of authenticated user.
-* [CP-10] Added support for updating environment aliases.
-* [CP-8], [CP-9] Added support for listing and getting environment aliases.
-* [CP-7] Delete functionality of environments.
-* [CP-4], [CP-6] Upsert functionality of environments.
-* [CP-6] Get one single environment of space.
-* [CP-1] Get all environments of space.
-* [CP-58] Get the authenticated user.
-* Update moul/http2curl dependency (#44)
-* Update Gopkg.lock
-* Remove old http2curl module from go.sum
-* Switch from github.com/moul/http2curl to moul.io/http2curl
-* added environment + improved memory alloc (#39)
-* removed checking for environment
-* added environment + improved memory alloc
+
+v0.6.0 (2020-04-03)
+===
+* `~` Added missing unit tests
+* `~` Improved Coverage
+* `~` Code cleanup
+* `~` More asserts in unit tests, test more specific per entity
+
+
+v0.5.12 (2020-03-31)
+===
+* `+` Added support for app-definitions entity
+* `~` Tests for app-definitions entity
+* `+` Added support for app-installations entity
+* `~` Tests for app-installations entity
+* `+` Added support for getting usage statistics of an organization
+* `~` Tests for usage entity
+* `~` Created unit tests for all Create methods (all entities)
+
+
+v0.5.11 (2020-03-30)
+===
+* `+` Added support for webhook entity
+* `+` Webhook calls and webhook health support
+* `~` Tests for webhook entity
+
+
+v0.5.10 (2020-03-30)
+===
+* `+` Added support for extensions entity
+* `~` Tests for extensions entity
+
+
+v0.5.9 (2020-03-27)
+===
+* `+` Added support for editor interfaces entity
+* `~` Tests for editor interfaces entity
+
+
+v0.5.8 (2020-03-27)
+===
+* `+` Added support for scheduledactions entity
+* `~` Tests for scheduledactions entity
+
+
+v0.5.7 (2020-03-27)
+===
+* `+` Added support for entrytasks entity
+* `~` Tests for entrytasks entity
+
+
+v0.5.6 (2020-03-26)
+===
+* `+` Added support for accesstokens entity
+* `~` Tests for accesstokens entity
+* `~` Added missing unit tests
+* `~` Code cleanup
+
+
+v0.5.5 (2020-03-25)
+===
+* `+` Added support for snapshots entity
+* `~` Tests for snapshots entity
+
+
+v0.5.4 (2020-03-24)
+===
+* `+` Added support for assets entity
+* `~` Tests for assets entity
+
+
+v0.5.3 (2020-03-23)
+===
+* `+` Added support for memberships entity
+* `~` Tests for memberships entity
+
+
+v0.5.2 (2020-03-20)
+===
+* `+` Added support for roles entity
+* `~` Tests for roles entity
+
+
+v0.5.1 (2020-03-19)
+===
+* `+` Added support for entries entity
+* `~` Tests for entries entity
+
+
+v0.5.0 (2020-03-18)
+===
+* `+` Added support for environments entity
+* `+` Added support for environment-alias entity
+* `+` Added support for getting organization of authenticated user
+* `+` Added support for getting the authenticated user
+* `~` Tests for all added entities
+* `~` Dependencies updated
 
 
 v0.4.0 (2019-04-29)
@@ -121,19 +134,19 @@ v0.3.0 (2017-11-11)
 
 v0.2.0 (2017-04-12)
 ===
-* Godoc style examples
-* [Added] Query.go tests
-* [Added] Locale resource tests
-* [Added] ContentType tests
-* [Added] Missing space resource tests
-* [Added] User-Agent for api requests
+* `~` Godoc style examples
+* `+` Query.go tests
+* `+` Locale resource tests
+* `+` ContentType tests
+* `+` Missing space resource tests
+* `+` User-Agent for api requests
 
 v0.1.1 (2017-03-31)
 ===
 
-* [Added] Rate-limited api requests
-* [Fix] Locale model
-* [Added] Content type field unmarshaling
+* `+` Rate-limited api requests
+* `~` Locale model
+* `+` Content type field unmarshaling
 
 v0.1.0 (2017-03-26)
 ===
@@ -191,38 +204,38 @@ contentType := &contentful.ContentType{
 
 v0.0.3 (2017-03-22)
 ===
-* [Added] PredefinedValues validation
-* [Added] Range validation greater/less than equal to support.
-* [Added] Size validation for content type field.
-* [Added] Packages are vendored with `godep`.
-* [Added] `version.go`.
-* [Added] `entity/content_type`: regex validation for content type field.
-* [Added] Validation data structures added: `MinMax`, `Regex`
-* [Added] `LinkType` support for `Field` struct
-* [Added] New validations: `MimeType`, `Dimension`, `FileSize`
+* `+` PredefinedValues validation
+* `+` Range validation greater/less than equal to support.
+* `+` Size validation for content type field.
+* `+` Packages are vendored with `godep`.
+* `+` `version.go`.
+* `+` `entity/content_type`: regex validation for content type field.
+* `+` Validation data structures added: `MinMax`, `Regex`
+* `+` `LinkType` support for `Field` struct
+* `+` New validations: `MimeType`, `Dimension`, `FileSize`
 
 
 v0.0.2 (2017-03-21)
 ===
-* `entity/webhook`: add tests for webhook entity.
-* `entity/space`: add tests for space entity.
-* `errors`: add tests for error handler.
-* `entity/content_type`: add test for content type entity.
-* `entity/content_type`: Field validations added for link type
-* `entity/content_type`: field validations added: Range, PredefinedValues, Unique
+* `~` `entity/webhook`: add tests for webhook entity.
+* `~` `entity/space`: add tests for space entity.
+* `~` `errors`: add tests for error handler.
+* `~` `entity/content_type`: add test for content type entity.
+* `~` `entity/content_type`: Field validations added for link type
+* `~` `entity/content_type`: field validations added: Range, PredefinedValues, Unique
 
 
 v0.0.1 (2017-03-20)
 ===
-* `sdk`: first implementation.
-* `collection`: first implementation.
-* `entity/content_type`: first implementation.
-* `entity/entry`: first implementation.
-* `entity/query`: first implementation.
-* `entity/asset`: first implementation.
-* `entity/locale`: first implementation.
-* `entity/space`: first implementation.
-* `entity/webhook`: first implementation.
-* `entity/api_key`: first implementation.
-* `sdk`: basic documentation.
-* `examples`: some examples for entities
+* `~` `sdk`: first implementation.
+* `~` `collection`: first implementation.
+* `~` `entity/content_type`: first implementation.
+* `~` `entity/entry`: first implementation.
+* `~` `entity/query`: first implementation.
+* `~` `entity/asset`: first implementation.
+* `~` `entity/locale`: first implementation.
+* `~` `entity/space`: first implementation.
+* `~` `entity/webhook`: first implementation.
+* `~` `entity/api_key`: first implementation.
+* `~` `sdk`: basic documentation.
+* `~` `examples`: some examples for entities
