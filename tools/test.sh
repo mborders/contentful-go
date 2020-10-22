@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-rm coverage.txt || true
+rm coverage.txt 2> /dev/null || true
 touch coverage.txt
 
 for d in $(go list ./... | grep -v /vendor/); do
