@@ -1,4 +1,4 @@
-v0.6.1 (2020-5-13)
+v0.6.1 (2020-10-22)
 ===
 * `+` Added support for uploads entity
 * `~` Added unit tests for uploads entity
