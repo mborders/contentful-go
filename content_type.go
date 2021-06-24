@@ -326,9 +326,19 @@ func (service *ContentTypesService) ListActivated(spaceID string) *Collection {
 // Get fetched a content type specified by `contentTypeID`
 func (service *ContentTypesService) Get(spaceID, contentTypeID string) (*ContentType, error) {
 	path := fmt.Sprintf("/spaces/%s/content_types/%s", spaceID, contentTypeID)
-	method := "GET"
 
-	req, err := service.c.newRequest(method, path, nil, nil)
+	return service.doGet(path)
+}
+
+// GetFromEnv a content type by `contentTypeID` from an environment
+func (service *ContentTypesService) GetFromEnv(env *Environment, contentTypeID string) (*ContentType, error) {
+	path := fmt.Sprintf("/spaces/%s/environments/%s/content_types/%s", env.Sys.Space.Sys.ID, env.Sys.ID, contentTypeID)
+
+	return service.doGet(path)
+}
+
+func (service *ContentTypesService) doGet(path string) (*ContentType, error) {
+	req, err := service.c.newRequest("GET", path, nil, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -343,23 +353,39 @@ func (service *ContentTypesService) Get(spaceID, contentTypeID string) (*Content
 
 // Upsert updates or creates a new content type
 func (service *ContentTypesService) Upsert(spaceID string, ct *ContentType) error {
+	var path string
+
+	if ct.Sys != nil && ct.Sys.ID != "" {
+		path = fmt.Sprintf("/spaces/%s/content_types/%s", spaceID, ct.Sys.ID)
+	} else {
+		path = fmt.Sprintf("/spaces/%s/content_types/%s", spaceID, ct.Name)
+	}
+
+	return service.doUpsert(path, ct)
+}
+
+// UpsertEnv a content type for an environment
+func (service *ContentTypesService) UpsertEnv(env *Environment, ct *ContentType) error {
+	var path string
+
+	path = fmt.Sprintf("/spaces/%s/environments/%s", env.Sys.Space.Sys.ID, env.Sys.ID)
+
+	if ct.Sys != nil && ct.Sys.ID != "" {
+		path = fmt.Sprintf("%s/content_types/%s", path, ct.Sys.ID)
+	} else {
+		path = fmt.Sprintf("%s/content_types/%s", path, ct.Name)
+	}
+
+	return service.doUpsert(path, ct)
+}
+
+func (service *ContentTypesService) doUpsert(path string, ct *ContentType) error {
 	bytesArray, err := json.Marshal(ct)
 	if err != nil {
 		return err
 	}
 
-	var path string
-	var method string
-
-	if ct.Sys != nil && ct.Sys.ID != "" {
-		path = fmt.Sprintf("/spaces/%s/content_types/%s", spaceID, ct.Sys.ID)
-		method = "PUT"
-	} else {
-		path = fmt.Sprintf("/spaces/%s/content_types/%s", spaceID, ct.Name)
-		method = "PUT"
-	}
-
-	req, err := service.c.newRequest(method, path, nil, bytes.NewReader(bytesArray))
+	req, err := service.c.newRequest("PUT", path, nil, bytes.NewReader(bytesArray))
 	if err != nil {
 		return err
 	}
@@ -372,6 +398,16 @@ func (service *ContentTypesService) Upsert(spaceID string, ct *ContentType) erro
 // Delete the content_type
 func (service *ContentTypesService) Delete(spaceID string, ct *ContentType) error {
 	path := fmt.Sprintf("/spaces/%s/content_types/%s", spaceID, ct.Sys.ID)
+	return service.doDelete(path, ct)
+}
+
+// DeleteFromEnv a content type from an environment
+func (service *ContentTypesService) DeleteFromEnv(env *Environment, ct *ContentType) error {
+	path := fmt.Sprintf("/spaces/%s/environments/%s/content_types/%s", env.Sys.Space.Sys.ID, env.Sys.ID, ct.Sys.ID)
+	return service.doDelete(path, ct)
+}
+
+func (service *ContentTypesService) doDelete(path string, ct *ContentType) error {
 	method := "DELETE"
 
 	req, err := service.c.newRequest(method, path, nil, nil)

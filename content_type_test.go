@@ -68,6 +68,54 @@ func ExampleContentTypesService_Upsert_create() {
 	}
 }
 
+func ExampleContentTypesService_Upsert_create_with_environment() {
+	cma := NewCMA("cma-token")
+	env := &Environment{
+		Sys: &Sys{
+			ID:       "env-id",
+			LinkType: "env-link-type",
+			Type:     "env-type",
+			Space: &Space{
+				Name:          "space-name",
+				DefaultLocale: "en",
+				Sys: &Sys{
+					ID:       "space-id",
+					LinkType: "space-link-type",
+					Type:     "space-type",
+				},
+			},
+		},
+		Name: "env-name",
+	}
+
+	contentType := &ContentType{
+		Name:         "test content type",
+		DisplayField: "field1_id",
+		Description:  "content type description",
+		Fields: []*Field{
+			{
+				ID:       "field1_id",
+				Name:     "field1",
+				Type:     "Symbol",
+				Required: false,
+				Disabled: false,
+			},
+			{
+				ID:       "field2_id",
+				Name:     "field2",
+				Type:     "Symbol",
+				Required: false,
+				Disabled: true,
+			},
+		},
+	}
+
+	err := cma.ContentTypes.UpsertEnv(env, contentType)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
 func ExampleContentTypesService_Upsert_Update() {
 	cma := NewCMA("cma-token")
 
@@ -79,6 +127,39 @@ func ExampleContentTypesService_Upsert_Update() {
 	contentType.Name = "modified content type name"
 
 	err = cma.ContentTypes.Upsert("space-id", contentType)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func ExampleContentTypesService_Upsert_Update_With_Environment() {
+	cma := NewCMA("cma-token")
+	env := &Environment{
+		Sys: &Sys{
+			ID:       "env-id",
+			LinkType: "env-link-type",
+			Type:     "env-type",
+			Space: &Space{
+				Name:          "space-name",
+				DefaultLocale: "en",
+				Sys: &Sys{
+					ID:       "space-id",
+					LinkType: "space-link-type",
+					Type:     "space-type",
+				},
+			},
+		},
+		Name: "env-name",
+	}
+
+	contentType, err := cma.ContentTypes.Get("space-id", "content-type-id")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	contentType.Name = "modified content type name"
+
+	err = cma.ContentTypes.UpsertEnv(env, contentType)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -121,6 +202,38 @@ func ExampleContentTypesService_Delete() {
 	}
 
 	err = cma.ContentTypes.Delete("space-id", contentType)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func ExampleContentTypesService_Delete_with_environment() {
+	cma := NewCMA("cma-token")
+
+	env := &Environment{
+		Sys: &Sys{
+			ID:       "env-id",
+			LinkType: "env-link-type",
+			Type:     "env-type",
+			Space: &Space{
+				Name:          "space-name",
+				DefaultLocale: "en",
+				Sys: &Sys{
+					ID:       "space-id",
+					LinkType: "space-link-type",
+					Type:     "space-type",
+				},
+			},
+		},
+		Name: "env-name",
+	}
+
+	contentType, err := cma.ContentTypes.GetFromEnv(env, "content-type-id")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = cma.ContentTypes.DeleteFromEnv(env, contentType)
 	if err != nil {
 		log.Fatal(err)
 	}
