@@ -331,7 +331,7 @@ func (service *ContentTypesService) Get(spaceID, contentTypeID string) (*Content
 }
 
 // GetFromEnv a content type by `contentTypeID` from an environment
-func (service *ContentTypesService) GetFromEnv(env *Environment, contentTypeID string) (*ContentType, error) {
+func (service *ContentTypesService) GetWithEnv(env *Environment, contentTypeID string) (*ContentType, error) {
 	path := fmt.Sprintf("/spaces/%s/environments/%s/content_types/%s", env.Sys.Space.Sys.ID, env.Sys.ID, contentTypeID)
 
 	return service.doGet(path)
@@ -365,7 +365,7 @@ func (service *ContentTypesService) Upsert(spaceID string, ct *ContentType) erro
 }
 
 // UpsertEnv a content type for an environment
-func (service *ContentTypesService) UpsertEnv(env *Environment, ct *ContentType) error {
+func (service *ContentTypesService) UpsertWithEnv(env *Environment, ct *ContentType) error {
 	var path string
 
 	path = fmt.Sprintf("/spaces/%s/environments/%s", env.Sys.Space.Sys.ID, env.Sys.ID)
@@ -402,7 +402,7 @@ func (service *ContentTypesService) Delete(spaceID string, ct *ContentType) erro
 }
 
 // DeleteFromEnv a content type from an environment
-func (service *ContentTypesService) DeleteFromEnv(env *Environment, ct *ContentType) error {
+func (service *ContentTypesService) DeleteWithEnv(env *Environment, ct *ContentType) error {
 	path := fmt.Sprintf("/spaces/%s/environments/%s/content_types/%s", env.Sys.Space.Sys.ID, env.Sys.ID, ct.Sys.ID)
 	return service.doDelete(path, ct)
 }
@@ -428,7 +428,7 @@ func (service *ContentTypesService) Activate(spaceID string, ct *ContentType) er
 }
 
 // Activate a contenttype in a specific environment, a.k.a publish
-func (service *ContentTypesService) ActivateEnv(env *Environment, ct *ContentType) error {
+func (service *ContentTypesService) ActivateWithEnv(env *Environment, ct *ContentType) error {
 	path := fmt.Sprintf("/spaces/%s/environments/%s/content_types/%s/published", env.Sys.Space.Sys.ID, env.Sys.ID, ct.Sys.ID)
 	return service.doActivate(path, ct)
 }
@@ -454,7 +454,7 @@ func (service *ContentTypesService) Deactivate(spaceID string, ct *ContentType) 
 }
 
 // Deactivate a contenttype in a specific environment, a.k.a publish
-func (service *ContentTypesService) DeactivateEnv(env *Environment, ct *ContentType) error {
+func (service *ContentTypesService) DeactivateWithEnv(env *Environment, ct *ContentType) error {
 	path := fmt.Sprintf("/spaces/%s/environments/%s/content_types/%s/published", env.Sys.Space.Sys.ID, env.Sys.ID, ct.Sys.ID)
 	return service.doDeactivate(path, ct)
 }
