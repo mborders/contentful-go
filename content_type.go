@@ -447,13 +447,13 @@ func (service *ContentTypesService) doActivate(path string, ct *ContentType) err
 	return service.c.do(req, ct)
 }
 
-// Deactivate a contenttype, a.k.a publish
+// Deactivate a contenttype, a.k.a unpublish
 func (service *ContentTypesService) Deactivate(spaceID string, ct *ContentType) error {
 	path := fmt.Sprintf("/spaces/%s/content_types/%s/published", spaceID, ct.Sys.ID)
 	return service.doDeactivate(path, ct)
 }
 
-// Deactivate a contenttype in a specific environment, a.k.a publish
+// Deactivate a contenttype in a specific environment, a.k.a unpublish
 func (service *ContentTypesService) DeactivateWithEnv(env *Environment, ct *ContentType) error {
 	path := fmt.Sprintf("/spaces/%s/environments/%s/content_types/%s/published", env.Sys.Space.Sys.ID, env.Sys.ID, ct.Sys.ID)
 	return service.doDeactivate(path, ct)

@@ -48,7 +48,7 @@ func ExampleContentTypesService_Upsert_create() {
 	}
 }
 
-func ExampleContentTypesService_Upsert_create_With_Environment() {
+func ExampleContentTypesService_Upsert_create_with_environment() {
 	cma := NewCMA("cma-token")
 	env, _ := environmentFromTestData("environment_1.json")
 	ct, _ := contentTypeFromTestData("content_type.json")
@@ -75,7 +75,7 @@ func ExampleContentTypesService_Upsert_update() {
 	}
 }
 
-func ExampleContentTypesService_Upsert_Update_With_Environment() {
+func ExampleContentTypesService_Upsert_update_with_environment() {
 	cma := NewCMA("cma-token")
 	env, _ := environmentFromTestData("environment_1.json")
 
@@ -106,7 +106,7 @@ func ExampleContentTypesService_Activate() {
 	}
 }
 
-func ExampleContentTypesService_Activate_With_Environment() {
+func ExampleContentTypesService_Activate_with_environment() {
 	cma := NewCMA("cma-token")
 
 	env, _ := environmentFromTestData("environment_1.json")
@@ -136,7 +136,7 @@ func ExampleContentTypesService_Deactivate() {
 	}
 }
 
-func ExampleContentTypesService_Deactivate_With_Environment() {
+func ExampleContentTypesService_Deactivate_with_environment() {
 	cma := NewCMA("cma-token")
 
 	env, _ := environmentFromTestData("environment_1.json")
@@ -166,22 +166,6 @@ func ExampleContentTypesService_Delete() {
 	}
 }
 
-func ExampleContentTypesService_Delete_With_Environment() {
-	cma := NewCMA("cma-token")
-
-	env, _ := environmentFromTestData("environment_1.json")
-
-	contentType, err := cma.ContentTypes.Get("space-id", "content-type-id")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	err = cma.ContentTypes.DeleteWithEnv(env, contentType)
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-
 func ExampleContentTypesService_Delete_with_environment() {
 	cma := NewCMA("cma-token")
 
@@ -198,7 +182,7 @@ func ExampleContentTypesService_Delete_with_environment() {
 	}
 }
 
-func ExampleContentTypesService_Delete_allDrafts() {
+func ExampleContentTypesService_Delete_all_drafts() {
 	cma := NewCMA("cma-token")
 
 	collection, err := cma.ContentTypes.List("space-id").Next()
@@ -218,7 +202,7 @@ func ExampleContentTypesService_Delete_allDrafts() {
 	}
 }
 
-func TestContentTypesServiceList(t *testing.T) {
+func TestContentTypesService_List(t *testing.T) {
 	var err error
 	assertions := assert.New(t)
 
@@ -247,7 +231,7 @@ func TestContentTypesServiceList(t *testing.T) {
 	assertions.Equal("City", contentType[0].Name)
 }
 
-func TestContentTypesServiceListActivated(t *testing.T) {
+func TestContentTypesService_ListActivated(t *testing.T) {
 	var err error
 	assertions := assert.New(t)
 
@@ -360,7 +344,7 @@ func TestContentTypesService_Get_2(t *testing.T) {
 	assertions.NotNil(err)
 }
 
-func TestContentTypesServiceActivate(t *testing.T) {
+func TestContentTypesService_Activate(t *testing.T) {
 	var err error
 	assertions := assert.New(t)
 
@@ -390,7 +374,7 @@ func TestContentTypesServiceActivate(t *testing.T) {
 	assertions.Nil(err)
 }
 
-func TestContentTypesServiceActivateForEnv(t *testing.T) {
+func TestContentTypesService_Activate_with_env(t *testing.T) {
 	var err error
 	assertions := assert.New(t)
 	env, err := environmentFromTestData("environment_1.json")
@@ -423,7 +407,7 @@ func TestContentTypesServiceActivateForEnv(t *testing.T) {
 	assertions.Nil(err)
 }
 
-func TestContentTypesServiceDeactivate(t *testing.T) {
+func TestContentTypesService_Deactivate(t *testing.T) {
 	var err error
 	assertions := assert.New(t)
 
@@ -453,7 +437,7 @@ func TestContentTypesServiceDeactivate(t *testing.T) {
 	assertions.Nil(err)
 }
 
-func TestContentTypesServiceDeactivateForEnv(t *testing.T) {
+func TestContentTypesService_Deactivate_with_env(t *testing.T) {
 	var err error
 	assertions := assert.New(t)
 	env, err := environmentFromTestData("environment_1.json")
