@@ -40,29 +40,9 @@ func ExampleContentTypesService_List() {
 func ExampleContentTypesService_Upsert_create() {
 	cma := NewCMA("cma-token")
 
-	contentType := &ContentType{
-		Name:         "test content type",
-		DisplayField: "field1_id",
-		Description:  "content type description",
-		Fields: []*Field{
-			{
-				ID:       "field1_id",
-				Name:     "field1",
-				Type:     "Symbol",
-				Required: false,
-				Disabled: false,
-			},
-			{
-				ID:       "field2_id",
-				Name:     "field2",
-				Type:     "Symbol",
-				Required: false,
-				Disabled: true,
-			},
-		},
-	}
+	ct, _ := contentTypeFromTestData("content_type.json")
 
-	err := cma.ContentTypes.Upsert("space-id", contentType)
+	err := cma.ContentTypes.Upsert("space-id", ct)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -70,53 +50,16 @@ func ExampleContentTypesService_Upsert_create() {
 
 func ExampleContentTypesService_Upsert_create_with_environment() {
 	cma := NewCMA("cma-token")
-	env := &Environment{
-		Sys: &Sys{
-			ID:       "env-id",
-			LinkType: "env-link-type",
-			Type:     "env-type",
-			Space: &Space{
-				Name:          "space-name",
-				DefaultLocale: "en",
-				Sys: &Sys{
-					ID:       "space-id",
-					LinkType: "space-link-type",
-					Type:     "space-type",
-				},
-			},
-		},
-		Name: "env-name",
-	}
+	env, _ := environmentFromTestData("environment_1.json")
+	ct, _ := contentTypeFromTestData("content_type.json")
 
-	contentType := &ContentType{
-		Name:         "test content type",
-		DisplayField: "field1_id",
-		Description:  "content type description",
-		Fields: []*Field{
-			{
-				ID:       "field1_id",
-				Name:     "field1",
-				Type:     "Symbol",
-				Required: false,
-				Disabled: false,
-			},
-			{
-				ID:       "field2_id",
-				Name:     "field2",
-				Type:     "Symbol",
-				Required: false,
-				Disabled: true,
-			},
-		},
-	}
-
-	err := cma.ContentTypes.UpsertEnv(env, contentType)
+	err := cma.ContentTypes.UpsertWithEnv(env, ct)
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
-func ExampleContentTypesService_Upsert_Update() {
+func ExampleContentTypesService_Upsert_update() {
 	cma := NewCMA("cma-token")
 
 	contentType, err := cma.ContentTypes.Get("space-id", "content-type-id")
@@ -132,25 +75,9 @@ func ExampleContentTypesService_Upsert_Update() {
 	}
 }
 
-func ExampleContentTypesService_Upsert_Update_With_Environment() {
+func ExampleContentTypesService_Upsert_update_with_environment() {
 	cma := NewCMA("cma-token")
-	env := &Environment{
-		Sys: &Sys{
-			ID:       "env-id",
-			LinkType: "env-link-type",
-			Type:     "env-type",
-			Space: &Space{
-				Name:          "space-name",
-				DefaultLocale: "en",
-				Sys: &Sys{
-					ID:       "space-id",
-					LinkType: "space-link-type",
-					Type:     "space-type",
-				},
-			},
-		},
-		Name: "env-name",
-	}
+	env, _ := environmentFromTestData("environment_1.json")
 
 	contentType, err := cma.ContentTypes.Get("space-id", "content-type-id")
 	if err != nil {
@@ -159,7 +86,7 @@ func ExampleContentTypesService_Upsert_Update_With_Environment() {
 
 	contentType.Name = "modified content type name"
 
-	err = cma.ContentTypes.UpsertEnv(env, contentType)
+	err = cma.ContentTypes.UpsertWithEnv(env, contentType)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -179,6 +106,22 @@ func ExampleContentTypesService_Activate() {
 	}
 }
 
+func ExampleContentTypesService_Activate_with_environment() {
+	cma := NewCMA("cma-token")
+
+	env, _ := environmentFromTestData("environment_1.json")
+
+	contentType, err := cma.ContentTypes.Get("space-id", "content-type-id")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = cma.ContentTypes.ActivateWithEnv(env, contentType)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
 func ExampleContentTypesService_Deactivate() {
 	cma := NewCMA("cma-token")
 
@@ -188,6 +131,22 @@ func ExampleContentTypesService_Deactivate() {
 	}
 
 	err = cma.ContentTypes.Deactivate("space-id", contentType)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func ExampleContentTypesService_Deactivate_with_environment() {
+	cma := NewCMA("cma-token")
+
+	env, _ := environmentFromTestData("environment_1.json")
+
+	contentType, err := cma.ContentTypes.Get("space-id", "content-type-id")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = cma.ContentTypes.DeactivateWithEnv(env, contentType)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -210,36 +169,20 @@ func ExampleContentTypesService_Delete() {
 func ExampleContentTypesService_Delete_with_environment() {
 	cma := NewCMA("cma-token")
 
-	env := &Environment{
-		Sys: &Sys{
-			ID:       "env-id",
-			LinkType: "env-link-type",
-			Type:     "env-type",
-			Space: &Space{
-				Name:          "space-name",
-				DefaultLocale: "en",
-				Sys: &Sys{
-					ID:       "space-id",
-					LinkType: "space-link-type",
-					Type:     "space-type",
-				},
-			},
-		},
-		Name: "env-name",
-	}
+	env, _ := environmentFromTestData("environment_1.json")
 
-	contentType, err := cma.ContentTypes.GetFromEnv(env, "content-type-id")
+	contentType, err := cma.ContentTypes.GetWithEnv(env, "content-type-id")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	err = cma.ContentTypes.DeleteFromEnv(env, contentType)
+	err = cma.ContentTypes.DeleteWithEnv(env, contentType)
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
-func ExampleContentTypesService_Delete_allDrafts() {
+func ExampleContentTypesService_Delete_all_drafts() {
 	cma := NewCMA("cma-token")
 
 	collection, err := cma.ContentTypes.List("space-id").Next()
@@ -259,7 +202,7 @@ func ExampleContentTypesService_Delete_allDrafts() {
 	}
 }
 
-func TestContentTypesServiceList(t *testing.T) {
+func TestContentTypesService_List(t *testing.T) {
 	var err error
 	assertions := assert.New(t)
 
@@ -288,7 +231,7 @@ func TestContentTypesServiceList(t *testing.T) {
 	assertions.Equal("City", contentType[0].Name)
 }
 
-func TestContentTypesServiceListActivated(t *testing.T) {
+func TestContentTypesService_ListActivated(t *testing.T) {
 	var err error
 	assertions := assert.New(t)
 
@@ -341,6 +284,40 @@ func TestContentTypesService_Get(t *testing.T) {
 	assertions.Equal("63Vgs0BFK0USe4i2mQUGK6", contentType.Sys.ID)
 }
 
+func TestContentTypesService_GetFromEnv(t *testing.T) {
+	var err error
+	assertions := assert.New(t)
+	env, err := environmentFromTestData("environment_1.json")
+	assertions.Nil(err)
+	assertions.NotNil(env)
+
+	handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		assertions.Equal(r.Method, "GET")
+		assertions.Equal(r.URL.Path, "/spaces/"+env.Sys.Space.Sys.ID+"/environments/"+env.Sys.ID+"/content_types/63Vgs0BFK0USe4i2mQUGK6")
+
+		checkHeaders(r, assertions)
+
+		w.WriteHeader(200)
+		_, _ = fmt.Fprintln(w, readTestData("content_type.json"))
+	})
+
+	// test server
+	server := httptest.NewServer(handler)
+	defer server.Close()
+
+	// cma client
+	cma = NewCMA(CMAToken)
+	cma.BaseURL = server.URL
+
+	// test content type
+	ct, err := contentTypeFromTestData("content_type.json")
+	assertions.Nil(err)
+
+	contentType, err := cma.ContentTypes.GetWithEnv(env, ct.Sys.ID)
+	assertions.Nil(err)
+	assertions.Equal("63Vgs0BFK0USe4i2mQUGK6", contentType.Sys.ID)
+}
+
 func TestContentTypesService_Get_2(t *testing.T) {
 	var err error
 	assertions := assert.New(t)
@@ -367,7 +344,7 @@ func TestContentTypesService_Get_2(t *testing.T) {
 	assertions.NotNil(err)
 }
 
-func TestContentTypesServiceActivate(t *testing.T) {
+func TestContentTypesService_Activate(t *testing.T) {
 	var err error
 	assertions := assert.New(t)
 
@@ -397,7 +374,40 @@ func TestContentTypesServiceActivate(t *testing.T) {
 	assertions.Nil(err)
 }
 
-func TestContentTypesServiceDeactivate(t *testing.T) {
+func TestContentTypesService_Activate_with_env(t *testing.T) {
+	var err error
+	assertions := assert.New(t)
+	env, err := environmentFromTestData("environment_1.json")
+	assertions.Nil(err)
+	assertions.NotNil(env)
+
+	handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		assertions.Equal(r.Method, "PUT")
+		assertions.Equal(r.URL.Path, "/spaces/"+env.Sys.Space.Sys.ID+"/environments/"+env.Sys.ID+"/content_types/63Vgs0BFK0USe4i2mQUGK6/published")
+
+		checkHeaders(r, assertions)
+
+		w.WriteHeader(200)
+		_, _ = fmt.Fprintln(w, readTestData("content_type.json"))
+	})
+
+	// test server
+	server := httptest.NewServer(handler)
+	defer server.Close()
+
+	// cma client
+	cma = NewCMA(CMAToken)
+	cma.BaseURL = server.URL
+
+	// test content type
+	ct, err := contentTypeFromTestData("content_type.json")
+	assertions.Nil(err)
+
+	err = cma.ContentTypes.ActivateWithEnv(env, ct)
+	assertions.Nil(err)
+}
+
+func TestContentTypesService_Deactivate(t *testing.T) {
 	var err error
 	assertions := assert.New(t)
 
@@ -424,6 +434,39 @@ func TestContentTypesServiceDeactivate(t *testing.T) {
 	assertions.Nil(err)
 
 	err = cma.ContentTypes.Deactivate(spaceID, ct)
+	assertions.Nil(err)
+}
+
+func TestContentTypesService_Deactivate_with_env(t *testing.T) {
+	var err error
+	assertions := assert.New(t)
+	env, err := environmentFromTestData("environment_1.json")
+	assertions.Nil(err)
+	assertions.NotNil(env)
+
+	handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		assertions.Equal(r.Method, "DELETE")
+		assertions.Equal(r.URL.Path, "/spaces/"+env.Sys.Space.Sys.ID+"/environments/"+env.Sys.ID+"/content_types/63Vgs0BFK0USe4i2mQUGK6/published")
+
+		checkHeaders(r, assertions)
+
+		w.WriteHeader(200)
+		_, _ = fmt.Fprintln(w, readTestData("content_type.json"))
+	})
+
+	// test server
+	server := httptest.NewServer(handler)
+	defer server.Close()
+
+	// cma client
+	cma = NewCMA(CMAToken)
+	cma.BaseURL = server.URL
+
+	// test content type
+	ct, err := contentTypeFromTestData("content_type.json")
+	assertions.Nil(err)
+
+	err = cma.ContentTypes.DeactivateWithEnv(env, ct)
 	assertions.Nil(err)
 }
 
@@ -641,6 +684,39 @@ func TestContentTypeDelete(t *testing.T) {
 
 	// delete content type
 	err = cma.ContentTypes.Delete("id1", ct)
+	assertions.Nil(err)
+}
+
+func TestContentTypesServiceDeleteFromEnv(t *testing.T) {
+	var err error
+	assertions := assert.New(t)
+	env, err := environmentFromTestData("environment_1.json")
+	assertions.Nil(err)
+	assertions.NotNil(env)
+
+	handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		assertions.Equal(r.Method, "DELETE")
+		assertions.Equal(r.URL.Path, "/spaces/"+env.Sys.Space.Sys.ID+"/environments/"+env.Sys.ID+"/content_types/63Vgs0BFK0USe4i2mQUGK6")
+
+		checkHeaders(r, assertions)
+
+		w.WriteHeader(200)
+		_, _ = fmt.Fprintln(w, readTestData("content_type.json"))
+	})
+
+	// test server
+	server := httptest.NewServer(handler)
+	defer server.Close()
+
+	// cma client
+	cma = NewCMA(CMAToken)
+	cma.BaseURL = server.URL
+
+	// test content type
+	ct, err := contentTypeFromTestData("content_type.json")
+	assertions.Nil(err)
+
+	err = cma.ContentTypes.DeleteWithEnv(env, ct)
 	assertions.Nil(err)
 }
 
