@@ -1,3 +1,10 @@
+v0.5.2 (2021-07-09)
+===================
+* `+` extended environments support 
+* `~` added missing unit tests
+* `~` code cleanup (mainly naming conventions)
+
+
 v0.5.1 (2021-06-24)
 ===================
 * `+` environments support for content types.
