@@ -12,9 +12,10 @@ type AssetsService service
 
 // Asset represents a Contentful asset
 type Asset struct {
-	Locale string
-	Sys    *Sys         `json:"sys,omitempty"`
-	Fields *AssetFields `json:"fields,omitempty"`
+	Locale   string
+	Metadata *Metadata    `json:"metadata,omitempty"`
+	Sys      *Sys         `json:"sys,omitempty"`
+	Fields   *AssetFields `json:"fields,omitempty"`
 }
 
 // AssetFields model
