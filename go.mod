@@ -1,4 +1,4 @@
-module github.com/labd/contentful-go
+module github.com/mborders/contentful-go
 
 go 1.14
 
