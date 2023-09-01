@@ -1,9 +1,4 @@
 version: 3
-vars:
-  codegenJar: "../rmf-codegen/rmf-codegen.jar"
-  apiSpecsDir: "../commercetools-api-reference/api-specs"
-  generatedDir: "./generated"
-  versionId: 1.3.0
 
 tasks:
   build:
