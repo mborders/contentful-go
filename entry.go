@@ -45,6 +45,25 @@ func (service *EntriesService) List(spaceID string) *Collection {
 	return col
 }
 
+// List returns entries collection
+func (service *EntriesService) ListWithContentType(spaceID, contentType string) *Collection {
+	path := fmt.Sprintf("/spaces/%s/environments/%s/entries", spaceID, service.c.Environment)
+	uv := url.Values{}
+	uv.Add("content_type", contentType)
+
+	req, err := service.c.newRequest(http.MethodGet, path, uv, nil)
+	if err != nil {
+		return &Collection{}
+	}
+
+	col := NewCollection(&CollectionOptions{})
+	col.c = service.c
+	col.req = req
+	col.contentType = contentType
+
+	return col
+}
+
 // Get returns a single entry
 func (service *EntriesService) Get(spaceID, entryID string) (*Entry, error) {
 	path := fmt.Sprintf("/spaces/%s/entries/%s", spaceID, entryID)
