@@ -22,7 +22,7 @@ type Collection struct {
 	Skip     int           `json:"skip"`
 	Limit    int           `json:"limit"`
 	Items    []interface{} `json:"items"`
-	Includes interface{}   `json:"includes"`
+	Includes Includes      `json:"includes"`
 }
 
 // NewCollection initializes a new collection
